@@ -4,6 +4,8 @@ import '../models/wish.dart';
 import '../helpers/wish_storage.dart';
 
 class WishlistScreen extends StatefulWidget {
+  const WishlistScreen({super.key});
+
   @override
   _WishlistScreenState createState() => _WishlistScreenState();
 }
@@ -35,9 +37,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("PocketWishes")),
+      appBar: AppBar(title: const Text("PocketWishes")),
       body: _wishes.isEmpty
-          ? Center(child: Text("No wishes yet. Tap + to add one."))
+          ? const Center(child: Text("No wishes yet. Tap + to add one."))
           : ListView.builder(
               itemCount: _wishes.length,
               itemBuilder: (ctx, i) {
@@ -47,7 +49,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     leading: wish.imagePath != null
                         ? Image.file(File(wish.imagePath!),
                             width: 50, height: 50)
-                        : Icon(Icons.favorite_border),
+                        : const Icon(Icons.favorite_border),
                     title: Text(
                       wish.title,
                       style: TextStyle(
@@ -70,7 +72,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                           onPressed: () => _toggleFulfilled(wish),
                         ),
                         IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () => _deleteWish(wish),
                         ),
                       ],
@@ -84,7 +86,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
           await Navigator.pushNamed(context, '/add');
           _loadWishes();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

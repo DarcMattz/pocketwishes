@@ -6,6 +6,8 @@ import '../models/wish.dart';
 import '../helpers/wish_storage.dart';
 
 class AddWishScreen extends StatefulWidget {
+  const AddWishScreen({super.key});
+
   @override
   _AddWishScreenState createState() => _AddWishScreenState();
 }
@@ -27,7 +29,7 @@ class _AddWishScreenState extends State<AddWishScreen> {
     _formKey.currentState!.save();
 
     final newWish = Wish(
-      id: Uuid().v4(),
+      id: const Uuid().v4(),
       title: _title,
       description: _description,
       price: _price,
@@ -44,7 +46,7 @@ class _AddWishScreenState extends State<AddWishScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Wish")),
+      appBar: AppBar(title: const Text("Add Wish")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -52,33 +54,32 @@ class _AddWishScreenState extends State<AddWishScreen> {
           child: ListView(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
                 onSaved: (value) => _title = value!,
                 validator: (value) =>
                     value!.isEmpty ? 'Please enter a title' : null,
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
                 onSaved: (value) => _description = value!,
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Price'),
+                decoration: const InputDecoration(labelText: 'Price'),
                 keyboardType: TextInputType.number,
-                onSaved: (value) =>
-                    _price = double.tryParse(value ?? '0') ?? 0,
+                onSaved: (value) => _price = double.tryParse(value ?? '0') ?? 0,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               _image == null
-                  ? Text('No image selected.')
+                  ? const Text('No image selected.')
                   : Image.file(_image!, height: 150),
               TextButton.icon(
-                icon: Icon(Icons.image),
-                label: Text("Pick Image"),
+                icon: const Icon(Icons.image),
+                label: const Text("Pick Image"),
                 onPressed: _pickImage,
               ),
               ElevatedButton(
                 onPressed: _saveWish,
-                child: Text("Save Wish"),
+                child: const Text("Save Wish"),
               ),
             ],
           ),
